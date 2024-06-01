@@ -26,7 +26,7 @@ export const Monogram = forwardRef(({ highlight, className, ...props }, ref) => 
           <rect className={styles.highlight} width="100%" height="100%" />
         </g>
       )} */}
-      <image width="48" height="29" href="./public/Transparentlogo.png" />
+      <image width="48" height="29" href="/Transparentlogo.png" />
     </svg>
   );
 });

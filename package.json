@@ -10,7 +10,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "dev": "node ./scripts/dev.cjs && remix vite:dev",
-    "build": "react-scripts build"
+    "build": "remix vite:build",
+    "postinstall": "node ./scripts/draco.cjs",
+    "start": "wrangler pages dev ./build/client",
+    "dev:storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build",
+    "deploy:storybook": "wrangler pages deploy ./storybook-static --project-name portfolio-storybook --branch main"
   },
   "dependencies": {
     "@aws-sdk/client-ses": "^3.515.0",
@@ -19,6 +24,7 @@
     "@remix-run/cloudflare-pages": "^2.7.1",
     "@remix-run/react": "^2.7.1",
     "framer-motion": "11.0.5",
+    "fs-extra": "^11.2.0",
     "isbot": "^4.1.0",
     "miniflare": "^3.20231030.4",
     "nodemailer": "^6.9.13",
