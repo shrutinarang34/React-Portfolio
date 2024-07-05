@@ -8,11 +8,11 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build/client",
     "dev": "node ./scripts/dev.cjs && remix vite:dev",
     "build": "remix vite:build",
     "postinstall": "node ./scripts/draco.cjs",
-    "start": "wrangler pages dev ./build/client",
+    "start": "netlify serve",
     "dev:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "deploy:storybook": "wrangler pages deploy ./storybook-static --project-name portfolio-storybook --branch main"

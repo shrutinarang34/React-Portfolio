@@ -29,7 +29,7 @@ export default defineConfig({
     }),
     remixCloudflareDevProxy(),
     remix({
-      ssr: false, 
+      //  ssr: false,
       routes(defineRoutes) {
         return defineRoutes(route => {
           route('/', 'routes/home/route.js', { index: true });
