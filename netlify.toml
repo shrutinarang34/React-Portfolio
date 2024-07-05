@@ -5,3 +5,8 @@ publish = "build/client"
 [dev]
 command = "npm run dev"
 framework = "vite"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
