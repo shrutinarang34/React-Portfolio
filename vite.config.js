@@ -1,8 +1,8 @@
+import { defineConfig } from 'vite';
 import {
   vitePlugin as remix,
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from '@remix-run/dev';
-import { defineConfig } from 'vite';
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
@@ -10,8 +10,6 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeImgSize from 'rehype-img-size';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
-
-const isStorybook = process.argv[1]?.includes('storybook');
 
 export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
@@ -21,6 +19,14 @@ export default defineConfig({
   server: {
     port: 7777,
   },
+  resolve: {
+    alias: {
+      stream: 'stream-browserify',
+      crypto: 'crypto-browserify',
+      path: 'path-browserify',
+      fs: false, // fs module is not available in the browser
+    },
+  },
   plugins: [
     mdx({
       rehypePlugins: [[rehypeImgSize, { dir: 'public' }], rehypeSlug, rehypePrism],
@@ -29,7 +35,6 @@ export default defineConfig({
     }),
     remixCloudflareDevProxy(),
     remix({
-      //  ssr: false,
       routes(defineRoutes) {
         return defineRoutes(route => {
           route('/', 'routes/home/route.js', { index: true });
