@@ -15,6 +15,9 @@ export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
   build: {
     assetsInlineLimit: 1024,
+    rollupOptions: {
+      external: ['nodemailer'],
+    },
   },
   server: {
     port: 7777,
